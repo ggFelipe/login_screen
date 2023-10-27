@@ -73,7 +73,7 @@ export default function Userdata() {
 
     return (
 
-        <View style={style.container}>
+        <Animatable.View animation='fadeInUp' style={style.container}>
             <View style={style.view}> 
                 <TouchableOpacity style={style.btnback} onPress={()=>navegation.goBack()}>
                     <MaterialIcons
@@ -88,7 +88,11 @@ export default function Userdata() {
             <ScrollView>
                 <View style={style.scrollview}>
                     <TouchableOpacity>
-                        <Image style={style.imageUser} source={require('../../../assets/icoUser.png')} />
+                        <Animatable.Image 
+                        style={style.imageUser} 
+                        source={require('../../../assets/icoUser.png')}
+                        animation='flipInY' 
+                        />
                     </TouchableOpacity>
                 </View>
 
@@ -156,14 +160,14 @@ export default function Userdata() {
 
                 </View>
 
-                <TouchableOpacity
+                <TouchableOpacity onPress={ () => navegation.navigate("Userprofile")}
                      style={ style.btnSave }>
                 <Text>Save Change</Text>
                 </TouchableOpacity>
 
                 {renderDatePicker()}
             </ScrollView>
-        </View>
+        </Animatable.View>
 
     );
 }

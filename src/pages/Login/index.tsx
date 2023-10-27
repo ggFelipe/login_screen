@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
-
+import { useNavigation } from '@react-navigation/native'
 import * as Animatable from 'react-native-animatable'
 
 export default function Login() {
- return (
+   const navegation = useNavigation();
+   return (
     <View style={styles.container}>
       <Animatable.View animation='fadeInLeft' delay={500} 
       style={styles.header}>
@@ -12,6 +13,11 @@ export default function Login() {
       </Animatable.View>
 
       <Animatable.View animation='fadeInUp' style={styles.containerForm}>
+
+         <Animatable.Image
+         animation='flipInY' 
+         source={require('../../../assets/imagemlogo.png')}
+         style={{ width: '100%'}} resizeMode='contain'/>
          
          <Text style={styles.title}>Email</Text>
          <TextInput placeholder='Digite um email'
@@ -21,7 +27,7 @@ export default function Login() {
          <TextInput placeholder='Digite sua senha'
          style={styles.input}/>
           
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={ () => navegation.navigate("Userdata")}  style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
 
@@ -86,5 +92,10 @@ const styles = StyleSheet.create({
    },
    registerText:{
       color: '#a1a1a1'
+   },
+   containerLogo:{
+      flex:2,
+      justifyContent: 'center',
+      alignItems: 'center',
    }
  })

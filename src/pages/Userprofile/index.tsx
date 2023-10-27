@@ -3,42 +3,17 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    useWindowDimensions,
     StyleSheet,
   } from "react-native";
   import React, { useState } from "react";
   import { StatusBar } from "expo-status-bar";
   import { MaterialIcons } from "@expo/vector-icons";
-  import { TabBar, TabView } from "react-native-tab-view";
   import { Colors } from "react-native/Libraries/NewAppScreen";
+import { useNavigation } from "@react-navigation/native";
   
   export default function Profile () {
+    const navegation = useNavigation();
   
-    const layout = useWindowDimensions();
-    const [index, setIndex] = useState(0);
-  
-    const [routes] = useState([
-      { key: "first", title: "Photos" },
-      { key: "second", title: "Likes" },
-    ]);
-  
-    const renderTabBar = (props) => (
-      <TabBar
-        {...props}
-        indicatorStyle={{
-          backgroundColor: Colors.primary,
-        }}
-        style={{
-          backgroundColor: Colors.white,
-          height: 44,
-        }}
-        renderLabel={({ focused, route }) => (
-          <Text style={[{ color: focused ? Colors.black : Colors.gray }]}>
-            {route.title}
-          </Text>
-        )}
-      />
-    );
     return (
       <View style={style.mainview}>
         <StatusBar backgroundColor={Colors.gray} />
@@ -54,30 +29,12 @@ import {
           <Image
             source={require('../../../assets/icoUser.png')}
             resizeMode="contain"
-            style={{
-              height: 155,
-              width: 155,
-              borderRadius: 999,
-              borderColor: Colors.primary,
-              borderWidth: 2,
-              marginTop: -90,
-            }}
+            style={style.imagecontain}
           />
   
           <Text
-            style={{
-              color: Colors.primary,
-              marginVertical: 8,
-            }}
-          >
-            Melissa Peters
-          </Text>
-          <Text
-            style={{
-              color: Colors.black,
-            }}
-          >
-            Interior designer
+            style={{ color: Colors.black, marginVertical: 8,}}>
+            Nome Aleatorio
           </Text>
   
           <View
@@ -93,7 +50,7 @@ import {
                 marginLeft: 4,
               }}
             >
-              Lagos, Nigeria
+              Endrereço, qualquer
             </Text>
           </View>
   
@@ -108,21 +65,12 @@ import {
                 flexDirection: "column",
                 alignItems: "center",
                 marginHorizontal: 10,
-              }}
-            >
-              <Text
-                style={{
-                  color: Colors.primary,
-                }}
-              >
-                122
+              }}>
+              <Text style={{ color: Colors.black, }}>
+                21
               </Text>
-              <Text
-                style={{                  
-                  color: Colors.primary,
-                }}
-              >
-                Followers
+              <Text style={{ color: Colors.black, }}>
+                Idade
               </Text>
             </View>
   
@@ -131,21 +79,14 @@ import {
                 flexDirection: "column",
                 alignItems: "center",
                 marginHorizontal: 10,
-              }}
-            >
+              }}>
               <Text
-                style={{                
-                  color: Colors.primary,
-                }}
-              >
-                67
+                style={{ color: Colors.black, }}>
+                55
               </Text>
               <Text
-                style={{
-                  color: Colors.primary,
-                }}
-              >
-                Followings
+                style={{ color: Colors.black, }}>
+                Pesso
               </Text>
             </View>
   
@@ -154,76 +95,24 @@ import {
                 flexDirection: "column",
                 alignItems: "center",
                 marginHorizontal: 10,
-              }}
-            >
-              <Text
-                style={{            
-                  color: Colors.primary,
-                }}
-              >
-                77K
+              }}>
+              <Text style={{ color: Colors.black, }}>
+                23/05
               </Text>
               <Text
-                style={{
-                  color: Colors.primary,
-                }}
-              >
-                Likes
+                style={{ color: Colors.black, }}>
+                Aniversario
               </Text>
             </View>
           </View>
   
           <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              style={{
-                width: 124,
-                height: 36,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: Colors.primary,
-                borderRadius: 10,
-                marginHorizontal: 20,
-              }}
-            >
-              <Text
-                style={{                  
-                  color: Colors.white,
-                }}
-              >
+            <TouchableOpacity onPress={ () => navegation.navigate("Userdata")} style={style.btnprofile}>
+              <Text style={{ color: Colors.white,}}>
                 Edit Profile
               </Text>
             </TouchableOpacity>
-  
-            <TouchableOpacity
-              style={{
-                width: 124,
-                height: 36,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: Colors.primary,
-                borderRadius: 10,
-                marginHorizontal: 20,
-              }}
-            >
-              <Text
-                style={{
-                  color: Colors.white,
-                }}
-              >
-                Add Friend
-              </Text>
-            </TouchableOpacity>
           </View>
-        </View>
-  
-        <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
-          <TabView
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
-            renderTabBar={renderTabBar}
-          />
         </View>
       </View>
     );
@@ -253,4 +142,23 @@ const style = StyleSheet.create({
     width: "100%",
   },
   
+  btnprofile:{
+    width: 124,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: '#ff8c00',
+    borderRadius: 10,
+    marginHorizontal: 20,
+  },
+
+  imagecontain:{
+    height: 155,
+    width: 155,
+    borderRadius: 999,
+    borderColor: '#ff8c00',
+    borderWidth: 2,
+    marginTop: -90,
+  }
+
 })
